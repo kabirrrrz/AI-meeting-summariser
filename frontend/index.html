@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Meeting Summariser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <h1>AI Meeting Summariser</h1>
+    </header>
+
+    <main class="container">
+
+        <div class="upload-card">
+            <h2>Upload Audio / Video File</h2>
+            <p class="subtext">Supported: mp3, wav, m4a, mp4, mov</p>
+
+            <label for="file-input" class="upload-btn">
+                Select File
+            </label>
+            <input type="file" id="file-input" hidden>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            Processing your file… Please wait.
+        </div>
+
+        <section id="results" class="results hidden">
+
+            <div class="result-card">
+                <h3>Transcript</h3>
+                <p id="transcript"></p>
+            </div>
+
+            <div class="result-card">
+                <h3>Summary</h3>
+                <p id="summary"></p>
+            </div>
+
+            <div class="result-card">
+                <h3>Keywords</h3>
+                <ul id="keywords"></ul>
+            </div>
+
+            <div class="result-card">
+                <h3>Sentiment</h3>
+                <p><strong>Type:</strong> <span id="sentiment"></span></p>
+                <p id="sentiment-reason"></p>
+            </div>
+
+        </section>
+
+    </main>
+
+<script src="script.js"></script>
+</body>
+</html>

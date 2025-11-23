@@ -1,0 +1,33 @@
+# Python/Venv
+.venv/
+_pycache_/
+*.pyc
+
+# Data / uploads
+data/
+backend/*.env
+
+# VS Code
+.vscode/
+# Ignore virtual environment
+.venv/
+venv/
+env/
+
+# Ignore API keys
+.env
+config.py
+
+# Ignore generated transcripts
+data/transcripts/
+
+# Ignore audio uploaded
+uploads/
+
+# Ignore Python cache
+_pycache_/
+*.pyc
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
