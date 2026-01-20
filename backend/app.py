@@ -1,24 +1,24 @@
-# backend/app.py
+# app.py
 import os
 from flask_cors import CORS
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 
-from backend.config_sample import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
-from backend.utils import ensure_folder, save_transcript, get_db
-from backend.processors.stt import transcribe_file
-from backend.processors.nlp import analyze_transcript
+from config_sample import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
+from utils import ensure_folder, save_transcript, get_db
+from processors.stt import transcribe_file
+from processors.nlp import analyze_transcript
 
 ALLOWED_EXT = {'wav', 'mp3', 'm4a', 'mp4', 'mov', 'ogg'}
 
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Correct Flask config usage
+# ✅ Flask config
 app.config['UPLOAD_FOLDER'] = os.path.abspath(UPLOAD_FOLDER)
 app.config['TRANSCRIPTS_FOLDER'] = os.path.abspath(TRANSCRIPTS_FOLDER)
 
-# ✅ Create folders if not exist
+# ✅ Ensure folders exist
 ensure_folder(app.config['UPLOAD_FOLDER'])
 ensure_folder(app.config['TRANSCRIPTS_FOLDER'])
 
@@ -58,10 +58,6 @@ def upload():
         "transcript": transcript,
         **analysis
     }
-
-    # Optional DB
-    # db = get_db()
-    # db.meetings.insert_one(result)
 
     return jsonify(result), 200
 
