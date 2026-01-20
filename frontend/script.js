@@ -12,7 +12,7 @@ function uploadFile(file) {
     const formData = new FormData();
     formData.append("file", file);
 
-    fetch("http://localhost:5000/upload", {
+    fetch("https://ai-meeting-summariser-c5tv.onrender.com/upload", {
         method: "POST",
         body: formData
     })
