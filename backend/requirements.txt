@@ -4,3 +4,4 @@ pydub
 openai
 pymongo
 requests
+gunicorn
