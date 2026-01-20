@@ -1,7 +1,8 @@
 # backend/processors/stt.py
 
 import google.generativeai as genai
-from config import GEMINI_API_KEY
+from config_sample import GEMINI_API_KEY
+
 
 genai.configure(api_key=GEMINI_API_KEY)
 

@@ -3,7 +3,8 @@ import os
 from flask_cors import CORS
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from config import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
+from config_sample import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
+
 from utils import ensure_folder, save_transcript, get_db
 from processors.stt import transcribe_file
 from processors.nlp import analyze_transcript
@@ -12,8 +13,8 @@ ALLOWED_EXT = {'wav', 'mp3', 'm4a', 'mp4', 'mov', 'ogg'}
 
 app = Flask(__name__)
 CORS(app)
-app.config['UPLOAD_FOLDER'] = os.path.abspath(UPLOAD_FOLDER)
-app.config['TRANSCRIPTS_FOLDER'] = os.path.abspath(TRANSCRIPTS_FOLDER)
+app.config_sample['UPLOAD_FOLDER'] = os.path.abspath(UPLOAD_FOLDER)
+app.config_sample['TRANSCRIPTS_FOLDER'] = os.path.abspath(TRANSCRIPTS_FOLDER)
 ensure_folder(app.config['UPLOAD_FOLDER'])
 ensure_folder(app.config['TRANSCRIPTS_FOLDER'])
 
