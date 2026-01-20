@@ -3,11 +3,13 @@ import os
 from flask_cors import CORS
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from config_sample import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
+from backend.config_sample import UPLOAD_FOLDER, TRANSCRIPTS_FOLDER
 
-from utils import ensure_folder, save_transcript, get_db
-from processors.stt import transcribe_file
-from processors.nlp import analyze_transcript
+
+from backend.utils import ensure_folder, save_transcript, get_db
+from backend.processors.stt import transcribe_file
+from backend.processors.nlp import analyze_transcript
+
 
 ALLOWED_EXT = {'wav', 'mp3', 'm4a', 'mp4', 'mov', 'ogg'}
 
