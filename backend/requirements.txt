@@ -6,3 +6,11 @@ pymongo
 requests
 gunicorn
 flask-cors
+flask
+flask-cors
+python-dotenv
+requests
+gunicorn
+google-generativeai
+pymongo
+pydub
