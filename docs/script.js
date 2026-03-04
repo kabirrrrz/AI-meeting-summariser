@@ -79,7 +79,7 @@ function uploadFile(file) {
     formData.append("file", file);
 
     // ✅ LOCAL BACKEND
-    fetch("https://ai-meeting-summariser.onrender.com/upload", {
+    fetch("https://ai-meeting-summariser-1.onrender.com/", {
         method: "POST",
         body: formData
     })
