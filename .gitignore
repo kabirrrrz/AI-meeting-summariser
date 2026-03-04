@@ -16,7 +16,7 @@ env/
 
 # Ignore API keys
 .env
-config.py
+
 
 # Ignore generated transcripts
 data/transcripts/

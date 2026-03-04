@@ -6,27 +6,38 @@ fileInput.addEventListener("change", () => {
 });
 
 function uploadFile(file) {
+    console.log("UPLOAD STARTED"); // DEBUG
+
     document.getElementById("loading").classList.remove("hidden");
     document.getElementById("results").classList.add("hidden");
 
     const formData = new FormData();
     formData.append("file", file);
 
-    fetch("https://ai-meeting-summariser-c5tv.onrender.com/upload", {
+    // ✅ LOCAL BACKEND
+    fetch("http://127.0.0.1:5000/upload", {
         method: "POST",
         body: formData
     })
-    .then(res => res.json())
+    .then(res => {
+        console.log("SERVER RESPONSE STATUS:", res.status);
+        return res.json();
+    })
     .then(data => {
-        document.getElementById("loading").classList.add("hidden");
+        console.log("SERVER DATA:", data);
 
+        document.getElementById("loading").classList.add("hidden");
         document.getElementById("results").classList.remove("hidden");
 
-        document.getElementById("transcript").innerText = data.transcript || "Not available";
-        document.getElementById("summary").innerText = data.summary || "Not available";
+        document.getElementById("transcript").innerText =
+            data.transcript || "Not available";
+
+        document.getElementById("summary").innerText =
+            data.summary || "Not available";
 
         let kwBox = document.getElementById("keywords");
         kwBox.innerHTML = "";
+
         (data.keywords || []).forEach(k => {
             let li = document.createElement("li");
             li.innerText = k;
@@ -35,14 +46,18 @@ function uploadFile(file) {
 
         if (data.sentiment) {
             document.getElementById("sentiment").innerText =
-                data.sentiment.overall || data.sentiment.label || "Unknown";
+                data.sentiment.overall ||
+                data.sentiment.label ||
+                "Unknown";
 
             document.getElementById("sentiment-reason").innerText =
                 data.sentiment.reason || "";
         }
     })
     .catch(err => {
-        document.getElementById("loading").innerText = "Error. Try Again.";
-        console.error(err);
+        console.error("FETCH FAILED:", err);
+
+        document.getElementById("loading").innerText =
+            "Error. Try Again.";
     });
 }
